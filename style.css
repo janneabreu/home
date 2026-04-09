@@ -271,8 +271,9 @@ a {
 }
 
 .hero-title {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
     margin-bottom: var(--spacing-md);
+    line-height: 1.1;
 }
 
 .hero-subtitle {
@@ -699,11 +700,11 @@ a {
 
 @media (min-width: 768px) {
     .section-title {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 
     .hero-title {
-        font-size: 4.5rem;
+        font-size: 6rem;
     }
     
     .hero-container {
@@ -776,11 +777,11 @@ a {
 
 @media (min-width: 1024px) {
     .section-title {
-        font-size: 5rem;
+        font-size: 6rem;
     }
 
     .hero-title {
-        font-size: 6rem;
+        font-size: 8rem;
     }
     
     .emotion-grid {
