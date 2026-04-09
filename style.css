@@ -1,0 +1,781 @@
+/* =========================================================================
+   VARIABLES & THEME SETUP
+   ========================================================================= */
+:root {
+    /* Color Palette */
+    --color-off-white: #FAF8F6;
+    --color-light-beige: #FDF5ED;
+    --color-rosy-nude: #F9E7E0;
+    --color-soft-terracotta: #E37456; /* More vibrant */
+    --color-warm-brown: #7A4A3D;     /* Deeper brown */
+    --color-matte-gold: #D4AF37;     /* More vibrant gold */
+    --color-accent-orange: #FF7043;  /* High attention orange */
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, #FF8A65 0%, #E37456 100%);
+    --gradient-dark: linear-gradient(135deg, #E37456 0%, #7A4A3D 100%);
+    
+    /* Text Colors */
+    --color-text-dark: #3F3532;
+    --color-text-medium: #5D504C;
+    --color-text-light: #FAF8F6;
+    
+    /* Typography */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 3rem;
+    --spacing-xl: 5rem;
+    
+    /* Radii & Shadows */
+    --radius-sm: 4px;
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    --shadow-soft: 0 10px 30px rgba(141, 99, 87, 0.08);
+    --shadow-book: -10px 10px 30px rgba(63, 53, 50, 0.15), inset -2px 0 5px rgba(255, 255, 255, 0.2);
+}
+
+/* =========================================================================
+   RESET & BASE STYLES
+   ========================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--color-text-dark);
+    background-color: var(--color-off-white);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Typography Base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-text-dark);
+}
+
+h1 em, h2 em, h3 em {
+    font-style: italic;
+    color: var(--color-warm-brown);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.italic { font-style: italic; }
+.font-medium { font-weight: 500; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+/* Utilities */
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+/* Containers */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) 0;
+}
+
+.container-wide {
+    max-width: 1100px;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+/* =========================================================================
+   BUTTONS
+   ========================================================================= */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: var(--radius-sm);
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-align: center;
+    border: none;
+}
+
+.btn-primary {
+    background: var(--gradient-primary);
+    color: var(--color-off-white);
+    box-shadow: 0 4px 20px rgba(227, 116, 86, 0.4);
+}
+
+.btn-primary:hover {
+    background: var(--gradient-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(122, 74, 61, 0.5);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-warm-brown);
+    border: 1px solid var(--color-warm-brown);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-light-beige);
+}
+
+.btn-large {
+    padding: 1.2rem 2.5rem;
+    font-size: 1.1rem;
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 400px;
+}
+
+.sub-btn-text {
+    font-size: 0.85rem;
+    color: var(--color-text-medium);
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+/* =========================================================================
+   IMAGE STYLING & PERSPECTIVES
+   ========================================================================= */
+.image-wrapper {
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+}
+
+.book-perspective {
+    transform: rotateY(-18deg) rotateX(4deg);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-perspective:hover {
+    transform: rotateY(-5deg) rotateX(1deg);
+}
+
+.book-img-main {
+    width: 280px;
+    height: auto;
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: -15px 15px 40px rgba(0, 0, 0, 0.22);
+    border-left: 2px solid rgba(0, 0, 0, 0.05); /* Spine edge illusion */
+}
+
+.book-perspective-secondary {
+    transform: rotateY(15deg);
+    transition: transform 0.6s ease;
+}
+
+.book-perspective-secondary:hover {
+    transform: rotateY(0deg);
+}
+
+.book-img-secondary {
+    width: 240px;
+    height: auto;
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 15px 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+.author-img-main {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+    mix-blend-mode: normal;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 var(--radius-lg);
+}
+
+
+/* =========================================================================
+   SECTIONS STYLING
+   ========================================================================= */
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.text-block {
+    font-size: 1.1rem;
+    color: var(--color-text-medium);
+}
+
+/* 1. HERO SECTION */
+.hero {
+    background-color: var(--color-light-beige);
+    position: relative;
+    overflow: hidden;
+    padding-top: var(--spacing-xl);
+}
+
+/* Subtle background elements for premium feel */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(232, 212, 204, 0.4) 0%, rgba(243, 236, 230, 0) 70%);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.hero-content {
+    text-align: left;
+}
+
+.hero-title {
+    font-size: 2.8rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-subtitle {
+    font-size: 1.25rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--color-text-medium);
+    margin-bottom: var(--spacing-md);
+}
+
+.hero-text {
+    font-size: 1rem;
+    color: var(--color-text-medium);
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: flex-start;
+    padding: var(--spacing-md) 0;
+    perspective: 1500px;
+}
+
+/* 2. IDENTIFY WITH PAIN */
+.pain-section {
+    background-color: #fff;
+}
+
+.highlight-text {
+    font-size: 1.2rem;
+    color: var(--color-warm-brown);
+    margin: var(--spacing-md) 0;
+}
+
+.big-statement {
+    font-size: 2rem;
+    font-family: var(--font-heading);
+    color: var(--color-text-dark);
+    margin: var(--spacing-md) 0;
+}
+
+.identification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.id-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    font-size: 1.1rem;
+    color: var(--color-text-medium);
+}
+
+.id-item i {
+    font-size: 1.5rem;
+    color: var(--color-soft-terracotta);
+    flex-shrink: 0;
+}
+
+.cta-discreet {
+    font-size: 0.95rem;
+    color: var(--color-matte-gold);
+    font-style: italic;
+    border-bottom: 1px solid var(--color-matte-gold);
+    display: inline-block;
+    padding-bottom: 2px;
+}
+
+/* 3. BELIEF BREAKER */
+.belief-breaker {
+    background-color: var(--color-light-beige);
+    color: var(--color-text-dark);
+}
+
+.quote-box {
+    background-color: var(--color-off-white);
+    padding: var(--spacing-lg) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--color-warm-brown);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    border-left: 4px solid var(--color-matte-gold);
+}
+
+/* 4. MECHANISM */
+.mechanism {
+    background-color: var(--color-off-white);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.mechanic-card {
+    background-color: #fff;
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.mechanic-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-icon {
+    font-size: 3rem;
+    color: var(--color-matte-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.mechanic-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-text-dark);
+}
+
+.mechanic-card p {
+    color: var(--color-text-medium);
+    font-size: 1rem;
+}
+
+.summary-text {
+    font-size: 1.4rem;
+    font-family: var(--font-heading);
+    color: var(--color-warm-brown);
+}
+
+/* 5. EBOOK PRESENTATION */
+.ebook-presentation {
+    background-color: var(--color-light-beige);
+}
+
+.benefits-list {
+    list-style: none;
+}
+
+.benefits-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    color: var(--color-text-medium);
+}
+
+.benefits-list i {
+    color: var(--color-soft-terracotta);
+    font-size: 1.4rem;
+    margin-top: 2px;
+}
+
+.ebook-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 6. EMOTIONAL BENEFITS */
+.emotional-benefits {
+    background-color: var(--color-off-white);
+}
+
+.emotion-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.emotion-item {
+    background-color: var(--color-rosy-nude);
+    color: var(--color-text-dark);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* 7 & 8. AUDIENCE (FOR/NOT FOR) */
+.audience-section {
+    background-color: #fff;
+}
+
+.flex-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+}
+
+.audience-box {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+}
+
+.is-for {
+    background-color: rgba(205, 142, 123, 0.1);
+    border: 1px solid rgba(205, 142, 123, 0.3);
+}
+
+.not-for {
+    background-color: rgba(141, 99, 87, 0.05);
+    border: 1px solid rgba(141, 99, 87, 0.15);
+}
+
+.box-title {
+    font-size: 1.6rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.check-list, .cross-list {
+    list-style: none;
+}
+
+.check-list li, .cross-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: var(--color-text-medium);
+}
+
+.check-list i {
+    color: var(--color-soft-terracotta);
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+.cross-list i {
+    color: var(--color-text-medium);
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
+
+/* 9. AUTHOR */
+.about-author {
+    background-color: var(--color-light-beige);
+}
+
+.author-photo {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+}
+
+.author-photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    filter: sepia(0.2) saturate(0.8); /* Soft editorial look */
+}
+
+/* 10. OFFER */
+.offer-section {
+    background-color: var(--color-rosy-nude);
+}
+
+.offer-card {
+    background-color: #fff;
+    padding: var(--spacing-xl) var(--spacing-md);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(141, 99, 87, 0.15);
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.offer-tag {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-matte-gold);
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.offer-product-name {
+    font-size: 1.2rem;
+    font-family: var(--font-body);
+    font-weight: 400;
+    margin-top: 1rem;
+}
+
+.offer-product-name strong {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    display: block;
+    color: var(--color-warm-brown);
+}
+
+.offer-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-text-medium);
+    margin-bottom: var(--spacing-md);
+}
+
+.offer-includes p {
+    text-align: left;
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.offer-includes i {
+    color: var(--color-matte-gold);
+    font-size: 1.4rem;
+}
+
+.price-box {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    color: var(--color-text-dark);
+}
+
+.price-box .currency {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.price-box .value {
+    font-size: 4.5rem;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.price-box .cents {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+/* 11. GUARANTEE */
+.guarantee-section {
+    background-color: var(--color-off-white);
+}
+
+.guarantee-icon {
+    font-size: 4rem;
+    color: var(--color-matte-gold);
+    margin-bottom: var(--spacing-sm);
+}
+
+.guarantee-text p {
+    font-size: 1.15rem;
+    color: var(--color-text-medium);
+}
+
+/* 12. FINAL CLOSE */
+.final-close {
+    background-color: var(--color-light-beige);
+}
+
+.pulse-effect {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(205, 142, 123, 0.7); }
+    70% { transform: scale(1.03); box-shadow: 0 0 0 15px rgba(205, 142, 123, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(205, 142, 123, 0); }
+}
+
+/* FOOTER */
+.site-footer {
+    background-color: var(--color-warm-brown);
+    color: var(--color-off-white);
+    padding: var(--spacing-lg) 0;
+}
+
+.footer-disclaimer {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.footer-links {
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: var(--color-off-white);
+    opacity: 0.9;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.footer-links .separator {
+    margin: 0 10px;
+    opacity: 0.5;
+}
+
+/* =========================================================================
+   MEDIA QUERIES (DESKTOP ENHANCEMENTS)
+   ========================================================================= */
+
+@media (min-width: 768px) {
+    .section-title {
+        font-size: 3rem;
+    }
+    
+    .hero-container {
+        flex-direction: row;
+        align-items: center;
+        padding-top: var(--spacing-xl);
+    }
+    
+    .hero-content {
+        flex: 1.2;
+        text-align: left;
+    }
+    
+    .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .hero-buttons .btn {
+        min-width: 320px;
+        flex: 0 1 auto;
+    }
+    
+    .hero-visual {
+        flex: 1;
+        justify-content: flex-end;
+    }
+    
+    .book-img-main {
+        width: 320px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .container-flex {
+        flex-direction: row;
+        align-items: center;
+    }
+    
+    .ebook-image, .ebook-content {
+        flex: 1;
+    }
+    
+    .ebook-image {
+        order: -1;
+    }
+    
+    .book-img-secondary {
+        width: 280px;
+    }
+
+    .emotion-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .flex-columns {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .author-photo, .author-content {
+        flex: 1;
+    }
+    
+    .author-photo {
+        max-width: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    .emotion-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
